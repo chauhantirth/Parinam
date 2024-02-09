@@ -18,9 +18,7 @@ MongoClient.connect(
     console.error(err.stack),
     process.exit(1)
 }).then(async client => {
-    app.use("/api/v1/result", (req, res) => {
-        resultWrapper(req, res, MongoClient)
-    })
+    app.use("/api/v1/result", resultWrapper(client))
     app.use("*", (req, res) => {
         return res.status(404).json({ error: "404 not found" })
     })
