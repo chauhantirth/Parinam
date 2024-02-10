@@ -1,22 +1,25 @@
-import express from "express"
+import express from "express";
 
-function getDb(req, res, mongoClient) {
-    res.send({"status": "success", "route": "result/", "method": "GET"})
-}
+async function findOneByListing(client, listing) {
+    const result = await client.db("rngpit").collection("gujcet-2023").findOne({"aadharno": listing});
+    return result;
+};
 
-function postDb(req, res, mongoClient) {
-    res.send({"status": "success", "route": "result/", "method": "POST"})
-}
+async function postDb(req, res, mongoClient) {
+    const studentData = await findOneByListing(mongoClient, req.body.aadhar_no);
+    res.send(studentData);
+};
 
 var wrapper = function(mongoClient) {
-    var router = express.Router()
-    router.get('/print', function(req, res) {
+    var router = express.Router();
+
+    router.get('/', function(req, res) {
         getDb(req, res, mongoClient);
     });
 
     router.post('/', (req, res) => postDb(req, res, mongoClient));
 
-    return router
+    return router;
 }
 
-export default wrapper
+export default wrapper;

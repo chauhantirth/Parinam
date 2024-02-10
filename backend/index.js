@@ -1,28 +1,30 @@
-import app from "./server.js"
-import mongodb from "mongodb"
-import dotenv from "dotenv"
-import resultWrapper from "./routes/result.route.js"
+import app from "./server.js";
+import mongodb from "mongodb";
+import dotenv from "dotenv";
+import resultWrapper from "./routes/result.route.js";
 
-dotenv.config()
-const MongoClient = mongodb.MongoClient
+dotenv.config();
+const mongoClient = mongodb.MongoClient;
 
-const port = process.env.PORT || 8000
+const PORT = process.env.PORT || 8000;
 
-MongoClient.connect(
-    process.env.ATLAS_URI,
-    {
-        maxPoolSize:50,
-        connectTimeoutMS:2500,
+(async function() {
+    try {
+        const client = await mongoClient.connect(
+            process.env.ATLAS_URI,
+            {
+                maxPoolSize: 50,
+                connectTimeoutMS: 2500,
+        });
+
+        app.use('/api/v1/result', resultWrapper(client));
+        app.use('*', (req, res) => { return res.status(404).json({'errorMessage': 'routeNotFound'})});
+
+        app.listen(PORT, () => {
+            console.log(`Backend Server Listening on post: ${PORT}`);
+        });
+    } catch(error) {
+        console.error(error.stack);
+        process.exit(1);
     }
-).catch(err => {
-    console.error(err.stack),
-    process.exit(1)
-}).then(async client => {
-    app.use("/api/v1/result", resultWrapper(client))
-    app.use("*", (req, res) => {
-        return res.status(404).json({ error: "404 not found" })
-    })
-    app.listen(port, () => {
-        console.log(`Listening on Port: ${port}`)
-    })
-})
+})();
