@@ -13,10 +13,6 @@ async function postDb(req, res, mongoClient) {
 var wrapper = function(mongoClient) {
     var router = express.Router();
 
-    router.get('/', function(req, res) {
-        getDb(req, res, mongoClient);
-    });
-
     router.post('/', (req, res) => postDb(req, res, mongoClient));
 
     return router;
