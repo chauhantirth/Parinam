@@ -21,7 +21,7 @@ const PORT = process.env.PORT || 8000;
         app.use('*', (req, res) => { return res.status(404).json({'errorMessage': 'routeNotFound'})});
 
         app.listen(PORT, () => {
-            console.log(`Backend Server Listening on post: ${PORT}`);
+            console.log(`Backend Server Listening on port: ${PORT}`);
         });
     } catch(error) {
         console.error(error.stack);
