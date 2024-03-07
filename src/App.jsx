@@ -2,11 +2,10 @@ import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
 
-import search from './components/search';
-import { useGlobalContext } from './context/context';
+import Search from './components/search.jsx';
 
 function App() {
-  const data = useGlobalContext();
+
   return (
     <>
       <div>
@@ -18,8 +17,7 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <h3>Result { data }</h3>
-      <search />
+      <Search />
     </>
   )
 }
