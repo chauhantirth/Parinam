@@ -5,7 +5,14 @@ const searchReducer = (state, action) => {
         case "GET_RESULT":
             return {
                 ... state,
-                name: "Suresh"
+                name: "Suresh",
+                aadharNo: state.query
+            };
+        
+        case "SET_QUERY":
+            return {
+                ... state,
+                query: action.query
             };
     };
 

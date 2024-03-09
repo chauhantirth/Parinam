@@ -7,22 +7,26 @@ const search = () => {
 
   var data = useGlobalContext();
 
-  const [query, setQuery] = useState('');
-
   // bucket creation
   const initState = {
-    name: "dhsakdhajskdh",
+    name: "",
     marks: 0,
     school: "",
     aadharNo: "",
     query: "",
   };
+
   const [state, dispatch] = useReducer(reducer, initState);
 
   // Get Result
   const showResult = (e) => {
     e.preventDefault();
-    console.log(query)
+
+    var result = dispatch({
+      type: "GET_RESULT",
+    });
+
+    console.log(state.aadharNo);
   };
 
   return (
@@ -33,8 +37,11 @@ const search = () => {
           <form onSubmit={showResult}>
             <input
               type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              value={state.query}
+              onChange={(e) => dispatch({
+                type: "SET_QUERY",
+                query: e.target.value
+              })}
               placeholder="Enter your Enrolment Number"
             />
             <button type="submit">Get Result</button>
