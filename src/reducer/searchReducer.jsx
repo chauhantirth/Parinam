@@ -1,52 +1,40 @@
-// reducer functions
-
-const fetchData = (endpoint, query) => {
-
-    var apiData = fetch(endpoint, {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-            'Host': 'localhost'
-        },
-        body: JSON.stringify({
-            aadhar_no: query
-        })
-    }).then((res) => res.json()).then((data) => {
-        return data;
-    })
-    return apiData;
-};
-
 const searchReducer = (state, action) => {
-    switch(action.type) {
-        case "FETCH_RESULT":
-            
-            const API = "http://localhost:4000/api/v1/result";
-            var data = fetchData(API, state.query);
-            
-            return {
-                ... state,
-                name: data.name,
-                marks: data.marks,
-                school: data.school,
-                aadharNo: data.aadharno,
-            };
-
-        // case "SET_RESULT":
-        //     return {
-        //         ... state,
-        //         name: "Suresh",
-        //         aadharNo: state.query
-        //     };
-        
-        case "SET_QUERY":
-            return {
-                ... state,
-                query: action.query
-            };
-    };
-
-    return state;
-};
-
-export default searchReducer;
+    switch (action.type) {
+      case "SET_RESULT":
+        return {
+          ...state,
+          loading: false,
+          error: '',
+          name: action.data.name,
+          marks: action.data.marks,
+          school: action.data.school,
+          aadhar_no: action.data.aadhar_no,
+        };
+      case "SET_LOADING":
+        return {
+          ...state,
+          loading: true,
+          error: "",
+          name: "",
+          marks: 0,
+          school: "",
+          aadhar_no: "",
+        };
+      case "SET_ERROR":
+        return {
+          ...state,
+          loading: false,
+          error: "An error occurred.",
+        };
+      case "SET_QUERY":
+        return {
+          ...state,
+          query: action.query,
+        };
+      default:
+        return state;
+    }
+  };
+  
+  export default searchReducer;
+  

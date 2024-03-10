@@ -1,32 +1,58 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer } from 'react';
 import { useGlobalContext } from '../context/context';
-
 import reducer from '../reducer/searchReducer';
 
-const search = () => {
+const Search = () => {
+  const fetchAPI = async (endpoint, query) => {
+    try {
+      dispatch({ type: "SET_LOADING" }); // Set loading state
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Host': 'localhost'
+        },
+        body: JSON.stringify({
+          aadhar_no: query
+        })
+      });
 
-  var data = useGlobalContext();
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
 
-  // bucket creation
+      const resData = await response.json();
+
+      dispatch({
+        type: "SET_RESULT",
+        data: {
+          'name': resData.name,
+          'school': resData.school,
+          'marks': resData.marks,
+          'aadhar_no': resData.aadharno,
+        }
+      });
+    } catch (error) {
+      dispatch({ type: "SET_ERROR" }); // Set error state
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const data = useGlobalContext();
   const initState = {
+    loading: false,
+    error: "",
     name: "",
     marks: 0,
     school: "",
-    aadharNo: "",
+    aadhar_no: 0,
     query: "",
   };
-
   const [state, dispatch] = useReducer(reducer, initState);
 
-  // Get Result
-  const showResult = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    var result = dispatch({
-      type: "FETCH_RESULT",
-    });
-
-    console.log(state);
+    await fetchAPI('http://localhost:4000/api/v1/result', state.query);
   };
 
   return (
@@ -34,7 +60,7 @@ const search = () => {
       <div>
         From Search, This is a { data }
         <div>
-          <form onSubmit={showResult}>
+          <form onSubmit={handleSubmit}>
             <input
               type="text"
               value={state.query}
@@ -46,10 +72,21 @@ const search = () => {
             />
             <button type="submit">Get Result</button>
           </form>
+          {state.loading && <p>Loading...</p>}
+          {state.error && <p>Error: {state.error}</p>}
+          {state.name && (
+            <div>
+              <h2>Result</h2>
+              <p>Name: {state.name}</p>
+              <p>School: {state.school}</p>
+              <p>Marks: {state.marks}</p>
+              <p>Aadhar No: {state.aadhar_no}</p>
+            </div>
+          )}
         </div>
       </div>
     </>
-  )
+  );
 };
 
-export default search
+export default Search;
