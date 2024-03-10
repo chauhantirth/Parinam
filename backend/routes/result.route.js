@@ -1,6 +1,8 @@
 import express from "express";
 
 async function findOneByListing(client, listing) {
+    var intListing = parseInt(listing);
+
     const result = await client.db("rngpit").collection("gujcet-2023").findOne({"aadharno": listing});
     return result;
 };
