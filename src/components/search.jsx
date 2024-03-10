@@ -23,10 +23,10 @@ const search = () => {
     e.preventDefault();
 
     var result = dispatch({
-      type: "GET_RESULT",
+      type: "FETCH_RESULT",
     });
 
-    console.log(state.aadharNo);
+    console.log(state);
   };
 
   return (
@@ -38,9 +38,9 @@ const search = () => {
             <input
               type="text"
               value={state.query}
-              onChange={(e) => dispatch({
+              onChange={(ev) => dispatch({
                 type: "SET_QUERY",
-                query: e.target.value
+                query: ev.target.value
               })}
               placeholder="Enter your Enrolment Number"
             />
