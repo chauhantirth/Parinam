@@ -1,9 +1,12 @@
 import express from "express";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 async function findOneByListing(client, listing) {
     var intListing = parseInt(listing);
 
-    const result = await client.db("rngpit").collection("gujcet-2023").findOne({"aadharno": intListing});
+    const result = await client.db(process.env.DBNAME).collection(process.env.COLLECTION).findOne({"aadhar_no": intListing});
     return result;
 };
 
