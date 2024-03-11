@@ -27,9 +27,9 @@ const Search = () => {
         type: "SET_RESULT",
         data: {
           'name': resData.name,
-          'school': resData.school,
+          'school': resData.school_name,
           'marks': resData.marks,
-          'aadhar_no': resData.aadharno,
+          'aadhar_no': resData.aadhar_no,
         }
       });
     } catch (error) {
