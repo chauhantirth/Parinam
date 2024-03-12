@@ -1,6 +1,8 @@
 import React, { useReducer } from 'react';
 import { useGlobalContext } from '../context/context';
 import reducer from '../reducer/searchReducer';
+import PdfApp from './pdf';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 
 const Search = () => {
   const fetchAPI = async (endpoint, query) => {
@@ -60,6 +62,7 @@ const Search = () => {
       <div>
         From Search, This is a { data }
         <div>
+          <p>example: 458593000000</p>
           <form onSubmit={handleSubmit}>
             <input
               type="text"
@@ -72,6 +75,17 @@ const Search = () => {
             />
             <button type="submit">Get Result</button>
           </form>
+          <div>
+              <PDFDownloadLink document={<PdfApp name={state.name} marks={state.marks} schoolName={state.school}/>} fileName='hello1'>
+                {({loading}) => 
+                  loading ? (
+                    <button>Loading Document...</button>
+                  ) : (
+                    <button>Download PDF</button>
+                  )
+                }
+              </PDFDownloadLink>
+          </div>
           {state.loading && <p>Loading...</p>}
           {state.error && <p>Error: {state.error}</p>}
           {state.name && (
