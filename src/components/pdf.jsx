@@ -6,7 +6,7 @@ import geoFontBold from '../assets/fonts/Geologica-Bold.ttf';
 
 Font.register({
     family: 'GeologicaFamily',
-    format: 'tryetype',
+    // format: 'truetype',
     src: geoFontBold,
 });
 
@@ -40,6 +40,14 @@ const styles = StyleSheet.create({
             fontFamily: 'GeologicaFamily'
         },
     },
+    'Image': {
+        'img0': {
+            position: 'absolute',
+            zIndex: -1,
+            top: 0,
+            width: '100%',
+        },
+    },
 });
 
 
@@ -53,7 +61,7 @@ const truncateString = (str, maxLength) => {
 
 const PdfApp = ({name, marks, schoolName}) => {
 
-    schoolName = truncateString(schoolName, 26);
+    schoolName = truncateString(schoolName, 30);
 
     return (
     <Document>
@@ -62,7 +70,7 @@ const PdfApp = ({name, marks, schoolName}) => {
                 <Text style={styles.Text.StudentName}>{name}</Text>
                 <Text style={styles.Text.StudentInstitute}>{schoolName}</Text>
                 <Text style={styles.Text.StudentMarks}>{marks}</Text>
-                <Image src={ThisImage} debug={false} style={{ position: 'absolute', zIndex: -1, top: 0, width: '100%' }}/>   
+                <Image src={ThisImage} debug={false} style={styles.Image.img0}/>   
             </View>
         </Page>
     </Document>
