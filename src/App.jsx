@@ -1,16 +1,14 @@
 import Hero from './components/hero.jsx';
 import Navbar from './components/navbar.jsx';
 import React from 'react';
-import vectorCyan from './assets/images/vectorCyan.jpg';
-import vectorCream from './assets/images/vectorCream.jpg';
-import illustrationRead from './assets/images/IllustrationRead.jpg';
-
+import { useMediaQuery } from 'react-responsive';
 
 function App() {
+  const isSmallScreen = useMediaQuery({ maxWidth: 768 });
 
   return (
     <>
-    <section className='main'>
+    <section className={isSmallScreen ? 'main2' : 'main'}>
       <div className='w-full overflow-hidden'>
         <div className='sm:px-16 px-6 flex justify-center items-center'>
           <div className='xl:max-w-[1280px] w-full'>

@@ -5,14 +5,27 @@
 
 
 .main {
-  display: flex;
+  /* display: flex; */
   height: 100vh;
   background-color: #E9F7FD;
   background-image: url(./assets/images/IllustrationRead.png), url(./assets/images/vectorCyan.png), url(./assets/images/vectorCream.png);
-  background-size: 741px 429px, 728px 1024px, 850px 1024px;
+  background-size: 692px 400px, 728px 1024px, 850px 1024px;
+  max-width: 100%;
+  max-height: 100%;
   background-repeat: no-repeat;
-  /* background-attachment: fixed, none, fixed; */
   background-position: bottom right, top left, top left;
+}
+
+.main2 {
+  /* display: flex; */
+  height: 100vh;
+  background-color: #E9F7FD;
+  background-image: url(./assets/images/IllustrationRead.png), url(./assets/images/vectorCyan.png), url(./assets/images/vectorCream.png);
+  background-size: contain, 788px 1024px, 850px 1024px;
+  max-width: 100%;
+  max-height: 100%;
+  background-repeat: no-repeat;
+  background-position: bottom, right top, top left;
 }
 
 .saira-condensed-thin {
