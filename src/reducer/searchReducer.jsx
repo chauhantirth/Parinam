@@ -9,6 +9,7 @@ const searchReducer = (state, action) => {
           marks: action.data.marks,
           school: action.data.school,
           aadhar_no: action.data.aadhar_no,
+          initLoad: false,
         };
       case "SET_LOADING":
         return {
