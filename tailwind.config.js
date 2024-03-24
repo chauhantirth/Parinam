@@ -13,6 +13,11 @@ module.exports = {
   mode: "jit",
   theme: {
     extend: {
+      backgroundImage :{
+        'vectorCyan': "url('./src/assets/images/vectorCyan.jpg')",
+        'vectorCream': "url('./src/assets/images/vectorCream.jpg')",
+        'illustrationRead': "url('./src/assets/images/illustrationRead.jpg')",
+      },
       colors: {
         primary: "#00040f",
         secondary: "#00f6ff",
@@ -21,6 +26,7 @@ module.exports = {
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
+        saira: ["Saira Condensed", "sans-serif"],
       },
     },
     screens: {

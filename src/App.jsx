@@ -1,23 +1,30 @@
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+import Hero from './components/hero.jsx';
+import Navbar from './components/navbar.jsx';
+import React from 'react';
+import vectorCyan from './assets/images/vectorCyan.jpg';
+import vectorCream from './assets/images/vectorCream.jpg';
+import illustrationRead from './assets/images/IllustrationRead.jpg';
 
-import Search from './components/search.jsx';
 
 function App() {
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <section className='main'>
+      <div className='w-full overflow-hidden'>
+        <div className='sm:px-16 px-6 flex justify-center items-center'>
+          <div className='xl:max-w-[1280px] w-full'>
+            <Navbar/>
+          </div>
+        </div>
+
+        <div className='sm:px-16 px-6 flex justify-center items-center'>
+          <div className='xl:max-w-[1280px] w-full'>
+            <Hero/>
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <Search />
+    </section>
     </>
   )
 }
