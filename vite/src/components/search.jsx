@@ -69,7 +69,7 @@ const Search = () => {
     e.preventDefault();
 
     try {
-      await fetchAPI('http://localhost:4000/api/v1/result', state.query);
+      await fetchAPI('https://rngpit-api.vercel.app/api/v1/result', state.query);
     } catch (error) {
       console.error('Error:', error);
     } finally {
