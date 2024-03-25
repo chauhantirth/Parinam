@@ -5,6 +5,9 @@ import PdfApp from './pdf';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 
 const Search = () => {
+
+  const buttonStyle = 'disabled:opacity-40 disabled:scale-[.97] active:scale-[.98] active:duration-75 hover:scale-[1.01] ease-in-out transition-all w-full py-2 rounded-full bg-[#A4C9D8] text-black text-lg font-saira font-semibold '
+
   // API START =======================
   const fetchAPI = async (endpoint, query) => {
     try {
@@ -75,12 +78,11 @@ const Search = () => {
 
   return (
     <>
-      <div>
-        From Search, This is a { data }
-        <div>
-          <p>example: 458593000000</p>
+        <div className='flex flex-col gap-4 bg-[#E9F7FD] px-16 pt-4 pb-6 rounded-3xl border-2 border-gray-200 items-center justify-center mr-[0px]'>
+          <h1 className='text-[24px]'>CHECK YOUR RESULT</h1>
           <form>
-            <input
+            <label className='text-lg font-medium ml-2'>AADHAR NUMBER</label>
+            <input className='w-full border-2 border-grey-100 rounded-xl p-2 mt-1 bg-transparent'
               type="text"
               value={state.query}
               onChange={(ev) => {
@@ -101,45 +103,47 @@ const Search = () => {
             />
             {/* <button onClick={handleSubmit} type="submit" id="pdfButton">Download new</button> */}
           </form>
-          <div>
-          <PDFDownloadLink document={<PdfApp name={state.name} marks={state.marks} schoolName={state.school}/>} fileName='hello1'>
-            
-            {({loading}) => {
-              // console.log(ftdl);
-              if (loading) {
-                if (state.initLoad == true) {
-                  // console.log("Inside Loading Doc...")
-                  return (<button>Loading Documents...</button>)
-                } 
-                else {
-                  {handleVar(2)}
-                  // console.log("Inside Preparing Result...")
-                  return (<button> Preparing Result...</button>)
-                }
-              } 
-              else {
-                if (state.loading) {
-                  {handleVar(3)}
-                  // console.log("Inside Fetching Result...")
-                  return (<button> Fetching Result...</button>)
-                } 
-                else {
-                  if (ftdl == 3) {
-                    // console.log("Inside Show Result upper.")
-                    return (<button>Fetching Result...</button>)
+          <div className='w-full'>
+            <PDFDownloadLink document={<PdfApp name={state.name} marks={state.marks} schoolName={state.school}/>} fileName='hello1'>
+              
+              {({loading}) => {
+                // console.log(ftdl);
+                if (loading) {
+                  if (state.initLoad == true) {
+                    // console.log("Inside Loading Doc...")
+                    return (<button className={buttonStyle} disabled={1}>Loading Documents...</button>)
                   } 
                   else {
-                    // console.log("Inside Show Result.")
-                    return (<button>Show Result.</button>)
+                    {handleVar(2)}
+                    // console.log("Inside Preparing Result...")
+                    return (<button className={buttonStyle} disabled={1}> Preparing Result...</button>)
+                  }
+                } 
+                else {
+                  if (state.loading) {
+                    {handleVar(3)}
+                    // console.log("Inside Fetching Result...")
+                    return (<button className={buttonStyle} disabled={1}> Fetching Result...</button>)
+                  } 
+                  else {
+                    if (ftdl == 3) {
+                      // console.log("Inside Show Result upper.")
+                      return (<button className={buttonStyle} disabled={1}>Fetching Result...</button>)
+                    } 
+                    else {
+                      // console.log("Inside Show Result.")
+                      if (state.initLoad == true || state.query.length != 12) {
+                        return (<button className={buttonStyle} disabled={1}>Show Result</button>)
+                      } else {
+                        return (<button className={buttonStyle} disabled={0}>Show Result</button>)
+                      }
+                    }
                   }
                 }
-              }
-            }}
-          </PDFDownloadLink>
+              }}
+            </PDFDownloadLink>
           </div>
-          
         </div>
-      </div>
     </>
   );
 };

@@ -30,7 +30,7 @@ const navbar = () => {
                 onClick={() => setToggle((prev) => !prev)}
             />
 
-            <div className={`${toggle ? 'flex' : 'hidden'} p-6 absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}>
+            <div className={`${toggle ? 'flex' : 'hidden'} p-6 absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar bg-[#E9F7FD] `}>
                 <ul className='list-none flex flex-col justify-end items-center flex-1'>
                     <li className='mb-10'>
                         <a className='hover:text-gray-500' href='#'>Institute</a>
