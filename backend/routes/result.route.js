@@ -12,10 +12,10 @@ async function findOneByListing(client, listing) {
 
 async function postDb(req, res, mongoClient) {
     const studentData = await findOneByListing(mongoClient, req.body.aadhar_no);
-    setTimeout((() => {
-        res.send(studentData);
-      }), 4000)
-    // res.send(studentData);
+    // setTimeout((() => {
+    //     res.send(studentData);
+    //   }), 4000)
+    res.send(studentData);
 };
 
 var wrapper = function(mongoClient) {
