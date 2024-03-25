@@ -13,13 +13,13 @@ const navbar = () => {
         </div>
         <ul className='list-none sm:flex hidden justify-end items-center flex-1'>
             <li className='mr-10'>
-                <a className='hover:text-gray-500' href='#'>Institute</a>
+                <a className='hover:text-gray-500' href='https://rngpit.ac.in/'>Institute</a>
             </li>
             <li className='mr-10'>
-                <a className='hover:text-gray-500' href='#'>About</a>
+                <a className='hover:text-gray-500' href='https://github.com/chauhantirth/RNG-GCR/'>About</a>
             </li>
             <li className='mr-10'>
-                <a className='hover:text-gray-500' href='#'>Contact</a>
+                <a className='hover:text-gray-500' href='https://github.com/chauhantirth/'>Contact</a>
             </li>
         </ul>
 
@@ -33,13 +33,13 @@ const navbar = () => {
             <div className={`${toggle ? 'flex' : 'hidden'} p-6 absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar bg-[#E9F7FD] `}>
                 <ul className='list-none flex flex-col justify-end items-center flex-1'>
                     <li className='mb-10'>
-                        <a className='hover:text-gray-500' href='#'>Institute</a>
+                        <a className='hover:text-gray-500' href='https://rngpit.ac.in/'>Institute</a>
                     </li>
                     <li className='mb-10'>
-                        <a className='hover:text-gray-500' href='#'>About</a>
+                        <a className='hover:text-gray-500' href='https://github.com/chauhantirth/RNG-GCR/'>About</a>
                     </li>
                     <li className='mr-0'>
-                        <a className='hover:text-gray-500' href='#'>Contact</a>
+                        <a className='hover:text-gray-500' href='https://github.com/chauhantirth/'>Contact</a>
                     </li>
                 </ul>
             </div>
