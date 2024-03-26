@@ -1,11 +1,12 @@
 import React from 'react'
+import ENV from './constants';
 
 const footer = () => {
   return (
     <div className=''>
         <center>
         <p className='text-[18px] font-saira font-regular'>
-            This Project is Developed and Maintained By <a href='https://github.com/chauhantirth' className='font-semibold'>Tirth Chauhan</a>
+            {ENV.footerText}
         </p>
         </center>
     </div>
