@@ -124,6 +124,13 @@ const Search = () => {
             />
             {/* <button onClick={handleSubmit} type="submit" id="pdfButton">Download new</button> */}
           </form>
+
+          <div className={state.error ? 'py-0 px-3 max-w-[290px] text-sm text-red rounded-lg bg-[#E9F7FD] dark:bg-[#E9F7FD] dark:text-red-400' : 'hidden' }>
+            <p className='font-regular text-wrap break-words'>
+              {state.errorMessage}
+            </p>
+          </div>
+
           <div className='w-full'>
             <PDFDownloadLink document={<PdfApp name={state.name} marks={state.marks} schoolName={state.school}/>} fileName='hello1'>
               
