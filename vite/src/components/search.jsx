@@ -40,7 +40,7 @@ const Search = () => {
           type: "SET_RESULT",
           data: {
             'name': resData.container[0].name,
-            'school': resData.container[0].school_name,
+            'school': resData.container[0].school,
             'marks': resData.container[0].marks,
             'aadhar_no': resData.container[0].aadhar_no,
           }
@@ -91,7 +91,7 @@ const Search = () => {
     e.preventDefault();
 
     try {
-      await fetchAPI("http://localhost:4000/api/v1/result", state.query);
+      await fetchAPI(ENV.backend, state.query);
     } catch (error) {
       console.error('Error:', error);
     }
