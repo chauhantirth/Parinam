@@ -71,7 +71,7 @@ const Search = () => {
     e.preventDefault();
 
     try {
-      await fetchAPI(ENV.backend, state.query);
+      await fetchAPI("http://localhost:4000/api/v1/result", state.query);
     } catch (error) {
       console.error('Error:', error);
     } finally {

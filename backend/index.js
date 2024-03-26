@@ -18,7 +18,11 @@ const PORT = process.env.PORT || 8000;
         });
 
         app.use('/api/v1/result', resultWrapper(client));
-        app.use('*', (req, res) => { return res.status(404).json({'errorMessage': 'routeNotFound'})});
+        app.use('*', (req, res) => { return res.status(404).json({
+            'success': false,
+            'errorMessage': 'Route not found',
+            'errorCode': '1000',
+        })});
 
         app.listen(PORT, () => {
             console.log(`Backend Server Listening on port: ${PORT}`);

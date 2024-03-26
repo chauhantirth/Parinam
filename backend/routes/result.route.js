@@ -11,17 +11,42 @@ async function findOneByListing(client, listing) {
 };
 
 async function postDb(req, res, mongoClient) {
+    if (!req.body.aadhar_no) {
+        res.send({
+            'success': false,
+            'errorMessage': 'No post data found',
+            'errorCode': '2000'
+        })
+    }
+
     const studentData = await findOneByListing(mongoClient, req.body.aadhar_no);
-    // setTimeout((() => {
-    //     res.send(studentData);
-    //   }), 4000)
-    res.send(studentData);
+
+    if (!studentData || !studentData.aadhar_no) {
+        res.send({
+            'success': false,
+            'errorMessage': 'We are unable to find the result, Please verify your Aadhar Number and try again',
+            'errorCode': '3000'
+        })
+    } else {
+        // setTimeout((() => {
+        //     res.send(studentData);
+        //   }), 4000)
+        res.send({
+            'success': true,
+            'container': [studentData],
+        });
+    }
 };
 
 var wrapper = function(mongoClient) {
     var router = express.Router();
 
     router.post('/', (req, res) => postDb(req, res, mongoClient));
+    router.get('/', (req, res) =>  {return res.status(404).json({
+        'success': false,
+        'errorMessage': 'Method not allowed on this route',
+        'errorCode': '1001',
+    })})
 
     return router;
 }
