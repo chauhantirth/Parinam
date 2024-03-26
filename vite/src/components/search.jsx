@@ -1,8 +1,9 @@
-import React, { useReducer, useState, useRef, useEffect } from 'react';
+import React, { useReducer, useState } from 'react';
 import { useGlobalContext } from '../context/context';
 import reducer from '../reducer/searchReducer';
 import PdfApp from './pdf';
 import { PDFDownloadLink } from '@react-pdf/renderer';
+
 
 const Search = () => {
 
@@ -99,7 +100,7 @@ const Search = () => {
                 handleSubmit(ev);
               }
             }}
-              placeholder="Enter your Enrolment Number"
+              placeholder="Enter your Aadhar Number"
             />
             {/* <button onClick={handleSubmit} type="submit" id="pdfButton">Download new</button> */}
           </form>

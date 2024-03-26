@@ -1,9 +1,13 @@
 import React from 'react'
 import {Font, Page, Text, Image, Document, StyleSheet, View} from '@react-pdf/renderer';
 
-import scoreCard0 from '../assets/scoreCard/sc0.png';
+import ENV from './constants.jsx';
+
+import gujcetMarkSheet from '../assets/scoreCard/gujcet-sc0.png';
+import ddcetMarkSheet from '../assets/scoreCard/ddcet-sc0.png';
+
 import scoreCard1 from '../assets/scoreCard/sc1.png';
-import scoreCard2 from '../assets/scoreCard/sc22.png';
+import scoreCard2 from '../assets/scoreCard/sc2.png';
 import scoreCard3 from '../assets/scoreCard/sc3.png';
 import scoreCard4 from '../assets/scoreCard/sc4.png';
 import scoreCard5 from '../assets/scoreCard/sc5.png';
@@ -38,53 +42,8 @@ Font.register({
     src: geoFontBold,
 });
 
-const styles = StyleSheet.create({
-    'Page': {
-        position: 'relative',
-    },
-    'Text': {
-        'StudentName': {
-            position: 'absolute',
-            top: 163, 
-            left: 185,
-            fontSize: 12,
-            fontWeight: 'bold',
-            fontFamily: 'GeologicaFamily'
-        },
-        'StudentInstitute': {
-            position: 'absolute',
-            top: 188, 
-            left: 124,
-            fontSize: 11,
-            fontWeight: 'bold',
-            fontFamily: 'GeologicaFamily'
-        },
-        'StudentMarks': {
-            position: 'absolute',
-            top: 188, 
-            left: 575,
-            fontSize: 11,
-            fontWeight: 'bold',
-            fontFamily: 'GeologicaFamily'
-        },
-    },
-    'Image': {
-        'result': {
-            position: 'absolute',
-            zIndex: -1,
-            top: 0,
-            width: '100%',
-        },
-        'ordinary': {
-            position: 'relative',
-            zIndex: -1,
-            top: 0,
-            width: '100%',
-            height: '100%',            
-        }
-    },
-});
 
+const styles = StyleSheet.create(ENV.pdfCss[ENV.result.gujcet ? 'gujcet' : 'ddcet']); // Use ternary operator
 
 const truncateString = (str, maxLength) => {
     if (str.length <= maxLength) {
@@ -96,6 +55,7 @@ const truncateString = (str, maxLength) => {
 
 const PdfApp = ({name, marks, schoolName}) => {
 
+    const scoreCard0 = ENV.result.gujcet ? gujcetMarkSheet : ddcetMarkSheet;
     schoolName = truncateString(schoolName, 30);
 
     return (
