@@ -13,7 +13,7 @@ const hero = () => {
             </p>
           </h1>
         </div>
-        <div className='md:pt-[40px] pt-[60px] flex font-saira font-semibold'>
+        <div className='md:pt-[40px] pt-[60px] pb-[20px] flex font-saira font-semibold'>
           <Search/>
         </div>
     </div>

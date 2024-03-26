@@ -99,7 +99,7 @@ const Search = () => {
 
   return (
     <>
-        <div className='flex flex-col gap-4 bg-[#E9F7FD] px-16 pt-4 pb-6 rounded-3xl border-2 border-gray-200 items-center justify-center mr-[0px]'>
+        <div className='flex flex-col gap-4 bg-[#E9F7FD] px-16 pt-4 pb-6 rounded-3xl border-1 border-gray-200 items-center justify-center mr-[0px] shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
           <h1 className='text-[24px]'>CHECK YOUR RESULT</h1>
           <form>
             <label className='text-lg font-medium ml-2'>AADHAR NUMBER</label>
