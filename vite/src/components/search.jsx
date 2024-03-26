@@ -4,6 +4,7 @@ import reducer from '../reducer/searchReducer';
 import PdfApp from './pdf';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 
+import ENV from './constants';
 
 const Search = () => {
 
@@ -70,7 +71,7 @@ const Search = () => {
     e.preventDefault();
 
     try {
-      await fetchAPI('https://rngpit-api.vercel.app/api/v1/result', state.query);
+      await fetchAPI(ENV.backend, state.query);
     } catch (error) {
       console.error('Error:', error);
     } finally {
