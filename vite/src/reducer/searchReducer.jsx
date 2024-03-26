@@ -4,7 +4,9 @@ const searchReducer = (state, action) => {
         return {
           ...state,
           loading: false,
-          error: '',
+          error: false,
+          errorMessage: '',
+          errorCode: '',
           name: action.data.name,
           marks: action.data.marks,
           school: action.data.school,
@@ -15,7 +17,9 @@ const searchReducer = (state, action) => {
         return {
           ...state,
           loading: true,
-          error: "",
+          error: false,
+          errorMessage: '',
+          errorCode: '',
           name: "",
           marks: 0,
           school: "",
@@ -25,13 +29,24 @@ const searchReducer = (state, action) => {
         return {
           ...state,
           loading: false,
-          error: "An error occurred.",
+          error: true,
+          errorMessage: action.data.errorMessage,
+          errorCode: action.data.errorCode,
         };
       case "SET_QUERY":
         return {
           ...state,
+          error: false,
+          errorMessage: '',
+          errorCode: '',
           query: action.query,
         };
+      case "SET_NOTLOADING":
+        return {
+          ...state,
+          loading: false,
+        };
+    
       default:
         return state;
     }

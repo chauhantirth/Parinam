@@ -12,38 +12,56 @@ const Search = () => {
 
   // API START =======================
   const fetchAPI = async (endpoint, query) => {
-    try {
-      dispatch({ type: "SET_LOADING" }); // Set loading state
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Host': 'localhost'
-        },
-        body: JSON.stringify({
-          aadhar_no: query
-        })
-      });
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch data');
+    dispatch({ type: "SET_LOADING" }); // Set loading state
+
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Host': 'localhost'
+      },
+      body: JSON.stringify({
+        aadhar_no: query
+      })
+    });
+
+    dispatch({type: "SET_NOTLOADING"});
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch data from Api');
+    }
+    
+    const resData = await response.json();
+
+    if (resData) {
+      if (resData.success) {
+        dispatch({
+          type: "SET_RESULT",
+          data: {
+            'name': resData.container[0].name,
+            'school': resData.container[0].school_name,
+            'marks': resData.container[0].marks,
+            'aadhar_no': resData.container[0].aadhar_no,
+          }
+        });
+      } else {
+        dispatch({
+          type: "SET_ERROR",
+          data: {
+            'errorMessage': resData.errorMessage,
+            'errorCode': resData.errorCode,
+          }
+        });
       }
-
-      const resData = await response.json();
-
+    } else {
       dispatch({
-        type: "SET_RESULT",
+        type: "SET_ERROR",
         data: {
-          'name': resData.name,
-          'school': resData.school_name,
-          'marks': resData.marks,
-          'aadhar_no': resData.aadhar_no,
+          'errorMessage': "Unable to fetch data from the server. Try Refreshing the page",
+          'errorCode': "5000",
         }
       });
-      
-    } catch (error) {
-      dispatch({ type: "SET_ERROR" }); // Set error state
-      console.error('Error fetching data:', error);
     }
   };
   // API END ========
@@ -51,7 +69,9 @@ const Search = () => {
   const data = useGlobalContext();
   const initState = {
     loading: false,
-    error: "",
+    error: false,
+    errorMessage: '',
+    errorCode: '',
     name: "",
     marks: 0,
     school: "",
@@ -67,14 +87,13 @@ const Search = () => {
   }
 
   const handleSubmit = async (e) => {
-    // console.log("handleSubmit Called.")
+
     e.preventDefault();
 
     try {
       await fetchAPI("http://localhost:4000/api/v1/result", state.query);
     } catch (error) {
       console.error('Error:', error);
-    } finally {
     }
   };
 
@@ -109,7 +128,7 @@ const Search = () => {
             <PDFDownloadLink document={<PdfApp name={state.name} marks={state.marks} schoolName={state.school}/>} fileName='hello1'>
               
               {({loading}) => {
-                // console.log(ftdl);
+                // console.log(ftdl +' ' + state.loading);
                 if (loading) {
                   if (state.initLoad == true) {
                     // console.log("Inside Loading Doc...")
@@ -123,18 +142,19 @@ const Search = () => {
                 } 
                 else {
                   if (state.loading) {
-                    {handleVar(3)}
+                      {!state.error ? handleVar(3) : {}}
                     // console.log("Inside Fetching Result...")
                     return (<button className={buttonStyle} disabled={1}> Fetching Result...</button>)
                   } 
                   else {
                     if (ftdl == 3) {
-                      // console.log("Inside Show Result upper.")
-                      return (<button className={buttonStyle} disabled={1}>Fetching Result...</button>)
+                      // console.log("Inside &&")
+                      {state.error ? handleVar(2) : {}}
+                      return (<button className={buttonStyle} disabled={1}> Fetching Result...</button>)
                     } 
                     else {
                       // console.log("Inside Show Result.")
-                      if (state.initLoad == true || state.query.length != 12) {
+                      if (state.initLoad == true || state.query.length != 12 || state.error) {
                         return (<button className={buttonStyle} disabled={1}>Show Result</button>)
                       } else {
                         return (<button className={buttonStyle} disabled={0}>Show Result</button>)
