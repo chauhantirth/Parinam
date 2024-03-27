@@ -132,7 +132,7 @@ const Search = () => {
           </div>
 
           <div className='w-full'>
-            <PDFDownloadLink document={<PdfApp name={state.name} marks={state.marks} schoolName={state.school}/>} fileName='hello1'>
+            <PDFDownloadLink document={<PdfApp name={state.name} marks={state.marks} schoolName={state.school}/>} fileName={ENV.result.gujcet ? state.aadhar_no + '-GUJCET-Mock-Test-Result' : state.aadhar_no + '-DDCET-Mock-Test-Result' }>
               
               {({loading}) => {
                 // console.log(ftdl +' ' + state.loading);
