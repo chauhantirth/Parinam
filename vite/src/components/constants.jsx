@@ -1,6 +1,6 @@
 const ENV = {
-    "announcement": false,
-    "announcementText": "GUJCET Mock Test Result will be Announced on 28th March, 12:00 PM.",
+    "announcement": true,
+    "announcementText": "DDCET Mock Test Result will be Announced on 2nd April 2024, 12:00 PM.",
     "backend": {
         "gujcet": "https://rngpit-api.vercel.app/api/v1/result/gujcet",
         "ddcet": "https://rngpit-api.vercel.app/api/v1/result/ddcet",
