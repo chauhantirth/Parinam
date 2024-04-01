@@ -4,7 +4,7 @@ import {Font, Page, Text, Image, Document, StyleSheet, View} from '@react-pdf/re
 import ENV from './constants.jsx';
 
 import gujcetMarkSheet from '../assets/scoreCard/gujcet-sc0.png';
-import ddcetMarkSheet from '../assets/scoreCard/ddcet-sc0.png';
+import ddcetMarkSheet from '../assets/scoreCard/ddcet-sc0-200.png';
 
 import scoreCard1 from '../assets/scoreCard/sc1.png';
 import scoreCard2 from '../assets/scoreCard/sc2.png';

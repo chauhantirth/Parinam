@@ -91,7 +91,11 @@ const Search = () => {
     e.preventDefault();
 
     try {
-      await fetchAPI(ENV.backend, state.query);
+      if (ENV.result.gujcet) {
+        await fetchAPI(ENV.backend.gujcet, state.query);
+      } else {
+        await fetchAPI(ENV.backend.ddcet, state.query);
+      }
     } catch (error) {
       console.error('Error:', error);
     }

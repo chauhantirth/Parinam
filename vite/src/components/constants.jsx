@@ -1,10 +1,23 @@
 const ENV = {
     "announcement": false,
     "announcementText": "GUJCET Mock Test Result will be Announced on 28th March, 12:00 PM.",
-    "backend": "https://rngpit-api.vercel.app/api/v1/result",
+    "backend": {
+        "gujcet": "https://rngpit-api.vercel.app/api/v1/result/gujcet",
+        "ddcet": "https://rngpit-api.vercel.app/api/v1/result/ddcet",
+    },
     "result": {
         "gujcet": true,
         "ddcet": false
+    },
+    "heading": {
+        "gujcet": {
+            "firsthalf": "GUJCET MOCK",
+            "secondHalf": "TEST RESULT"
+        },
+        "ddcet": {
+            "firsthalf": "DDCET MOCK",
+            "secondHalf": "TEST RESULT"
+        }
     },
     "footerText": "This Project is Managed by CSE Department, RNGPIT.",
     "pdfCss": {
