@@ -6,8 +6,8 @@ const ENV = {
         "ddcet": "https://rngpit-api.vercel.app/api/v1/result/ddcet",
     },
     "result": {
-        "gujcet": true,
-        "ddcet": false
+        "gujcet": false,
+        "ddcet": true
     },
     "heading": {
         "gujcet": {
