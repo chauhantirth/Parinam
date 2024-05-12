@@ -19,7 +19,7 @@ const ENV = {
             "secondHalf": "TEST RESULT"
         }
     },
-    "footerText": "This Project is Managed by CSE Department, RNGPIT.",
+    "footerText": "This Project is Developed and maintained by Tirth Chauhan",
     "pdfCss": {
         "gujcet": {
             'Page': {
