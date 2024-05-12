@@ -16,10 +16,10 @@ const navbar = () => {
                 <a className='hover:text-gray-500' href='https://rngpit.ac.in/'>Institute</a>
             </li>
             <li className='mr-10'>
-                <a className='hover:text-gray-500' href='#'>About</a>
+                <a className='hover:text-gray-500' href='https://github.com/chauhantirth/RNG-GCR'>About</a>
             </li>
             <li className='mr-10'>
-                <a className='hover:text-gray-500' href='#'>Contact</a>
+                <a className='hover:text-gray-500' href='https://www.linkedin.com/in/tirth-chauhan-74ba8b25b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'>Contact</a>
             </li>
         </ul>
 
@@ -36,10 +36,10 @@ const navbar = () => {
                         <a className='hover:text-gray-500' href='https://rngpit.ac.in/'>Institute</a>
                     </li>
                     <li className='mb-10'>
-                        <a className='hover:text-gray-500' href='#'>About</a>
+                        <a className='hover:text-gray-500' href='https://github.com/chauhantirth/RNG-GCR'>About</a>
                     </li>
                     <li className='mr-0'>
-                        <a className='hover:text-gray-500' href='#'>Contact</a>
+                        <a className='hover:text-gray-500' href='https://www.linkedin.com/in/tirth-chauhan-74ba8b25b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'>Contact</a>
                     </li>
                 </ul>
             </div>
